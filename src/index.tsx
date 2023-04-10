@@ -1,23 +1,23 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+import artsReducer from './features/Arts';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './index.css';
 
-const container = document.getElementById('root')!;
+const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
 
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
-);
+const store = configureStore({
+    reducer: {
+        arts: artsReducer,
+    },
+});
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </React.StrictMode>
+);
