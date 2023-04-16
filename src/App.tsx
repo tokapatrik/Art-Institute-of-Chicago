@@ -1,28 +1,20 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { CircularProgress } from '@mui/material';
-import { fetchArt } from './features/Arts';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './assets/global.css';
+import { Header } from './common/Header/Header';
+import { ArtListPage } from './pages/ArtListPage/ArtListPage';
+import { ArtDetailsPage } from './pages/ArtDetailsPage/ArtDetailsPage';
+import './assets/global.css';
 
 function App() {
-    const dispatch = useDispatch<any>();
-
-    useEffect(() => {
-        dispatch(fetchArt());
-    }, [dispatch]);
-
-    const arts = useSelector((state: any) => state.arts.data);
-    const isLoading = useSelector((state: any) => state.arts.status);
-
     return (
-        <div>
-            {isLoading === 'loading' ? (
-                <CircularProgress />
-            ) : (
-                <div>
-                    <h1>asd</h1>
-                </div>
-            )}
+        <div className="App">
+            <BrowserRouter>
+                <Header />
+                <Routes>
+                    <Route path="/art/:id" element={<ArtDetailsPage />} />
+                    <Route path="/" element={<ArtListPage />} />
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 }

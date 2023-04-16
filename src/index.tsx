@@ -1,18 +1,11 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { configureStore } from '@reduxjs/toolkit';
+import store from './store/store';
 import { Provider } from 'react-redux';
-import artsReducer from './features/Arts';
-import App from './App';
+import App from './app';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
-
-const store = configureStore({
-    reducer: {
-        arts: artsReducer,
-    },
-});
 
 root.render(
     <React.StrictMode>

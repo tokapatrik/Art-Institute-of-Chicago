@@ -1,0 +1,23 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0 0.5rem 0;
+    border-bottom: 1px solid #b0b0b0;
+}
+
+header img {
+    width: 70px;
+    height: auto;
+}
+
+header h1 {
+    font-size: x-large;
+    font-weight: 300;
+    font-family: Ideal Sans A;
+    letter-spacing: 0.01em;
+}
+.parts {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

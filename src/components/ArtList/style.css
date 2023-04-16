@@ -1,0 +1,42 @@
+.artList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 3rem;
+    list-style: none;
+    margin: 0;
+    margin-bottom: 5rem;
+    padding: 0;
+}
+
+.artList li {
+    border: 1px solid #e4e4e4;
+    border-radius: 3%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transition: 200ms;
+    cursor: pointer;
+    overflow: hidden;
+    width: 100%;
+}
+
+.artList li:hover {
+    scale: 110%;
+    box-shadow: 0 0 2rem 0.5rem rgba(0, 119, 255, 0.426);
+}
+
+h4 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.imageFrame {
+    height: 200px;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+}
