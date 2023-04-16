@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Art } from '../../models/Art';
-import { ArtDetails } from '../../components/ArtDetails/ArtDetails';
 import './style.css';
 
 export function ArtDetailsPage() {
@@ -20,5 +19,22 @@ export function ArtDetailsPage() {
         return <h1>Loading...</h1>;
     }
 
-    return <ArtDetails artDetails={artDetails.data} />;
+    return (
+        <main>
+            <div className="container artDetailss">
+                <h1>{artDetails.data.title}</h1>
+                <img
+                    src={`https://www.artic.edu/iiif/2/${artDetails.data.image_id}/full/843,/0/default.jpg`}
+                    alt={artDetails.data.title}
+                />
+                <ul>
+                    <li>Artist: {artDetails.data.artist_title}</li>
+                    <li>Artwork type: {artDetails.data.artwork_type_title}</li>
+                    <li>
+                        Classification: {artDetails.data.classification_title}
+                    </li>
+                </ul>
+            </div>
+        </main>
+    );
 }

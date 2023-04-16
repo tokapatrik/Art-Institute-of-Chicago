@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Art, Pagination } from '../../models/Art';
+import { Art } from '../../models/Art';
+import { Pagination } from '../../layout/Pagination/Pagination';
+import { PaginationData } from '../../layout/Pagination/models';
 import { ArtList } from '../../components/ArtList/ArtList';
 import './style.css';
 
 export function ArtListPage() {
     const [artData, setArtData] = useState<
-        { data: Art[]; pagination: Pagination } | undefined
+        { data: Art[]; pagination: PaginationData } | undefined
     >(undefined);
     const [dataUrl, setDataUrl] = useState<string>(
         'https://api.artic.edu/api/v1/artworks'
@@ -17,6 +19,7 @@ export function ArtListPage() {
             .then((data) => setArtData(data))
             .catch((error) => console.log(error));
     }, [dataUrl]);
+    console.log(artData);
 
     if (!artData) {
         return <h1>Loading...</h1>;
@@ -26,31 +29,26 @@ export function ArtListPage() {
         <main>
             <div className="container">
                 <h1>Artworks:</h1>
-                <div className="pagination">
-                    <button
-                        onClick={() => {
-                            setDataUrl(artData.pagination.prev_url);
-                            setArtData(undefined);
-                        }}
-                        className={
-                            !artData.pagination.prev_url ? 'disabled' : ''
-                        }
-                    >
-                        Prev
-                    </button>
-                    {`${artData.pagination.current_page}/${artData.pagination.total_pages}`}
-                    <button
-                        onClick={() => {
-                            setDataUrl(artData.pagination.next_url);
-                            setArtData(undefined);
-                        }}
-                        className={
-                            !artData.pagination.next_url ? 'disabled' : ''
-                        }
-                    >
-                        Next
-                    </button>
-                </div>
+                <form
+                    className="search"
+                    onSubmit={(event) => {
+                        event.preventDefault;
+                        setDataUrl(
+                            `https://api.artic.edu/api/v1/artworks/search?q=${
+                                (event.target as HTMLFormElement).search.value
+                            }`
+                        );
+                        setArtData(undefined);
+                    }}
+                >
+                    <input type="text" name="search" />
+                    <button>Search</button>
+                </form>
+                <Pagination
+                    pagination={artData.pagination}
+                    setDataUrl={setDataUrl}
+                    setPageData={setArtData}
+                />
                 <ArtList artList={artData.data} />
             </div>
         </main>
