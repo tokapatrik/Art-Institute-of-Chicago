@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ArtData } from '../../store/features/art/models';
+import { Art } from '../../models/Art';
 import { ArtDetails } from '../../components/ArtDetails/ArtDetails';
 import './style.css';
 
 export function ArtDetailsPage() {
     const { id } = useParams();
-    const [artDetails, setArtDetails] = useState<ArtData | undefined>(
+    const [artDetails, setArtDetails] = useState<{ data: Art } | undefined>(
         undefined
     );
 
@@ -20,5 +20,5 @@ export function ArtDetailsPage() {
         return <h1>Loading...</h1>;
     }
 
-    return <ArtDetails artDetails={artDetails} />;
+    return <ArtDetails artDetails={artDetails.data} />;
 }

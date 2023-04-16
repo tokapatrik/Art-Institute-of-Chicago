@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { ArtListData } from '../../store/features/art/models';
+import { Art, Pagination } from '../../models/Art';
 import { ArtList } from '../../components/ArtList/ArtList';
 import './style.css';
 
 export function ArtListPage() {
-    const [artData, setArtData] = useState<ArtListData | undefined>(undefined);
+    const [artData, setArtData] = useState<
+        { data: Art[]; pagination: Pagination } | undefined
+    >(undefined);
     const [dataUrl, setDataUrl] = useState<string>(
         'https://api.artic.edu/api/v1/artworks'
     );
@@ -37,7 +39,6 @@ export function ArtListPage() {
                         Prev
                     </button>
                     {`${artData.pagination.current_page}/${artData.pagination.total_pages}`}
-
                     <button
                         onClick={() => {
                             setDataUrl(artData.pagination.next_url);
@@ -50,7 +51,7 @@ export function ArtListPage() {
                         Next
                     </button>
                 </div>
-                <ArtList artData={artData} />
+                <ArtList artList={artData.data} />
             </div>
         </main>
     );
