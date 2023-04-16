@@ -20,38 +20,35 @@ export function ArtListPage() {
         return <h1>Loading...</h1>;
     }
 
-    console.log(artData.pagination);
-
     return (
         <main>
             <div className="container">
                 <h1>Artworks:</h1>
                 <div className="pagination">
-                    {artData.pagination.prev_url ? (
-                        <button
-                            onClick={() => {
-                                setDataUrl(artData.pagination.prev_url);
-                                setArtData(undefined);
-                            }}
-                        >
-                            Prev
-                        </button>
-                    ) : (
-                        <button className="disabled">Prev</button>
-                    )}
+                    <button
+                        onClick={() => {
+                            setDataUrl(artData.pagination.prev_url);
+                            setArtData(undefined);
+                        }}
+                        className={
+                            !artData.pagination.prev_url ? 'disabled' : ''
+                        }
+                    >
+                        Prev
+                    </button>
                     {`${artData.pagination.current_page}/${artData.pagination.total_pages}`}
-                    {artData.pagination.next_url ? (
-                        <button
-                            onClick={() => {
-                                setDataUrl(artData.pagination.next_url);
-                                setArtData(undefined);
-                            }}
-                        >
-                            Next
-                        </button>
-                    ) : (
-                        <button className="disabled">Next</button>
-                    )}
+
+                    <button
+                        onClick={() => {
+                            setDataUrl(artData.pagination.next_url);
+                            setArtData(undefined);
+                        }}
+                        className={
+                            !artData.pagination.next_url ? 'disabled' : ''
+                        }
+                    >
+                        Next
+                    </button>
                 </div>
                 <ArtList artData={artData} />
             </div>
