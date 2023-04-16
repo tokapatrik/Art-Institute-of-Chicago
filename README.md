@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+React Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+Description:
 
-## Available Scripts
+Your task is to create a client application based on the API of the Art Institute of Chicago
+(https://api.artic.edu/docs/#introduction). The app consists of 3 pages:
+-Artwork list
+-Artwork details
+-Favorite artworks
 
-In the project directory, you can run:
+You will find the corresponding endpoints in the documentation to load data for the first 2 pages. The
+favorite functionality on the other hand should be handled locally in the browser.
 
-### `npm start`
+The “Artwork list” is a paginated list page containing 25 items per page by default. Each item is an
+artwork with an image and a title. There should be controls for loading other pages, a selector to change
+items per page, and a plain text search bar to load items based on the search criteria. There should be
+a favorite button on every item.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The “Artwork details” page contains detailed information about a single item. You should display the
+image, title, information about the author and the department. This page also contains a favorite
+button.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The “Favorite artworks” page lists all of your favorite artworks. There should be a button to remove an
+item from this list.
 
-### `npm test`
+Technology Requirements:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Use react, redux and either redux-thunk or redux-saga to build the app. You can use other libraries as
+well to help your work. TypeScript and Docker usage is recommended but not mandatory.
+Suggestions
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+There are no limitations or requirements about the look and feel of the app, but good UX is appreciated.
+You can use any CSS frameworks or component libraries to achieve this.
+Spamming the API might lead to rate limiting or IP blocking. Mind your queries, especially when
+searching.

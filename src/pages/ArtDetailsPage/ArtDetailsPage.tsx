@@ -3,11 +3,9 @@ import { useParams } from 'react-router-dom';
 import { Art } from '../../models/Art';
 import './style.css';
 
-export function ArtDetailsPage() {
+export const ArtDetailsPage = () => {
     const { id } = useParams();
-    const [artDetails, setArtDetails] = useState<{ data: Art } | undefined>(
-        undefined
-    );
+    const [artDetails, setArtDetails] = useState<{ data: Art } | undefined>(undefined);
 
     useEffect(() => {
         fetch(`https://api.artic.edu/api/v1/artworks/${id}`)
@@ -30,11 +28,9 @@ export function ArtDetailsPage() {
                 <ul>
                     <li>Artist: {artDetails.data.artist_title}</li>
                     <li>Artwork type: {artDetails.data.artwork_type_title}</li>
-                    <li>
-                        Classification: {artDetails.data.classification_title}
-                    </li>
+                    <li>Classification: {artDetails.data.classification_title}</li>
                 </ul>
             </div>
         </main>
     );
-}
+};

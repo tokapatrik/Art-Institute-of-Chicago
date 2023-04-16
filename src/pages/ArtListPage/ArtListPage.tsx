@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Art } from '../../models/Art';
 import { Pagination } from '../../layout/Pagination/Pagination';
-import { PaginationData } from '../../layout/Pagination/models';
+import { PaginationData } from '../../models/Pagination';
 import { ArtList } from '../../components/ArtList/ArtList';
 import './style.css';
 
-export function ArtListPage() {
-    const [artData, setArtData] = useState<
-        { data: Art[]; pagination: PaginationData } | undefined
-    >(undefined);
-    const [dataUrl, setDataUrl] = useState<string>(
-        'https://api.artic.edu/api/v1/artworks'
-    );
+export const ArtListPage = () => {
+    const [artData, setArtData] = useState<{ data: Art[]; pagination: PaginationData } | undefined>(undefined);
+    const [dataUrl, setDataUrl] = useState<string>('https://api.artic.edu/api/v1/artworks');
 
     useEffect(() => {
         fetch(dataUrl)
@@ -34,9 +30,7 @@ export function ArtListPage() {
                     onSubmit={(event) => {
                         event.preventDefault;
                         setDataUrl(
-                            `https://api.artic.edu/api/v1/artworks/search?q=${
-                                (event.target as HTMLFormElement).search.value
-                            }`
+                            `https://api.artic.edu/api/v1/artworks/search?q=${(event.target as HTMLFormElement).search.value}`
                         );
                         setArtData(undefined);
                     }}
@@ -44,13 +38,9 @@ export function ArtListPage() {
                     <input type="text" name="search" />
                     <button>Search</button>
                 </form>
-                <Pagination
-                    pagination={artData.pagination}
-                    setDataUrl={setDataUrl}
-                    setPageData={setArtData}
-                />
+                <Pagination pagination={artData.pagination} setDataUrl={setDataUrl} setPageData={setArtData} />
                 <ArtList artList={artData.data} />
             </div>
         </main>
     );
-}
+};

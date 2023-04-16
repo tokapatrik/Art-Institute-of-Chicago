@@ -3,18 +3,15 @@ import { NavigateFunction } from 'react-router-dom';
 import { Art } from '../../models/Art';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import {
-    addFavorite,
-    deleteFavorite,
-} from '../../store/features/favorites/favoritesSlice';
-import './style.css';
+import { addFavorite, deleteFavorite } from '../../store/features/favorites/favoritesSlice';
 import { AppDispatch } from '../../store/store';
+import './style.css';
 
 interface ArtListProps {
     artList: Art[];
 }
 
-export function ArtList({ artList }: ArtListProps) {
+export const ArtList = ({ artList }: ArtListProps) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const favoritArts = useAppSelector((state) => state.favorites.arts);
@@ -31,14 +28,9 @@ export function ArtList({ artList }: ArtListProps) {
             )}
         </ul>
     );
-}
+};
 
-function ArtListItem(
-    art: Art,
-    isFavorit: boolean,
-    navigate: NavigateFunction,
-    dispatch: AppDispatch
-) {
+const ArtListItem = (art: Art, isFavorit: boolean, navigate: NavigateFunction, dispatch: AppDispatch) => {
     return (
         <li
             key={art.id}
@@ -67,11 +59,8 @@ function ArtListItem(
                 )}
             </div>
             <div className="imageFrame">
-                <img
-                    src={`https://www.artic.edu/iiif/2/${art.image_id}/full/200,/0/default.jpg`}
-                    alt={art.title}
-                />
+                <img src={`https://www.artic.edu/iiif/2/${art.image_id}/full/200,/0/default.jpg`} alt={art.title} />
             </div>
         </li>
     );
-}
+};

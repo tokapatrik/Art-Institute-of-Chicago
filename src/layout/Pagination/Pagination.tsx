@@ -1,4 +1,4 @@
-import { PaginationData } from './models';
+import { PaginationData } from '../../models/Pagination';
 
 export interface PaginationDataProps {
     pagination: PaginationData;
@@ -7,11 +7,7 @@ export interface PaginationDataProps {
     setDataUrl: (newValue: string) => void;
 }
 
-export const Pagination = ({
-    pagination,
-    setDataUrl,
-    setPageData,
-}: PaginationDataProps) => {
+export const Pagination = ({ pagination, setDataUrl, setPageData }: PaginationDataProps) => {
     return (
         <div className="pagination">
             <button
